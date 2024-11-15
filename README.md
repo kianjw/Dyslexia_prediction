@@ -9,5 +9,6 @@ The inputtest.ipynb shows how the inputs work to come out with the prediction(Hi
 
 The file Dyslexia_test_questions set.docx is the test that we created (we collected some formulas and data from several well-known sources)
 
-Instruction for how to run the app
+Instruction for how to run the app:
+
 Putting model.pkl and scaler.pkl in the same directory as app.py
