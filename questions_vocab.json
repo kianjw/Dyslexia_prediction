@@ -1,0 +1,172 @@
+{
+    "questions": [
+        {
+            "type": "sentence_completion",
+            "question": "She studied hard to _____ her exam results.",
+            "options": ["A. improve", "B. forget", "C. delay", "D. ignore"],
+            "correct_answer": "A. improve"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "The weather was so _____ that they decided to go for a walk.",
+            "options": ["A. rainy", "B. hot", "C. pleasant", "D. cold"],
+            "correct_answer": "C. pleasant"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "His story was so _____ that everyone in the room cried.",
+            "options": ["A. boring", "B. emotional", "C. humorous", "D. confusing"],
+            "correct_answer": "B. emotional"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "She _____ a lot of money on her shopping trip.",
+            "options": ["A. saved", "B. spent", "C. invested", "D. lost"],
+            "correct_answer": "B. spent"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "The team was _____ after winning the championship.",
+            "options": ["A. excited", "B. disappointed", "C. nervous", "D. calm"],
+            "correct_answer": "A. excited"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "The company is planning to _____ a new product next year.",
+            "options": ["A. discontinue", "B. announce", "C. delay", "D. reject"],
+            "correct_answer": "B. announce"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "His behavior was so _____ that no one wanted to talk to him.",
+            "options": ["A. friendly", "B. rude", "C. polite", "D. generous"],
+            "correct_answer": "B. rude"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "The children were _____ with excitement when they saw the presents.",
+            "options": ["A. bored", "B. overwhelmed", "C. calm", "D. hungry"],
+            "correct_answer": "B. overwhelmed"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "The teacher asked the students to _____ their assignments before the deadline.",
+            "options": ["A. ignore", "B. submit", "C. review", "D. forget"],
+            "correct_answer": "B. submit"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "The storm was so _____ that the authorities issued a warning.",
+            "options": ["A. mild", "B. strong", "C. gentle", "D. weak"],
+            "correct_answer": "B. strong"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "His performance on stage was _____, earning him a standing ovation.",
+            "options": ["A. poor", "B. impressive", "C. ordinary", "D. unremarkable"],
+            "correct_answer": "B. impressive"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "She felt _____ after finishing her first marathon.",
+            "options": ["A. exhausted", "B. energized", "C. bored", "D. indifferent"],
+            "correct_answer": "A. exhausted"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "The _____ of the new law led to a decrease in crime rates.",
+            "options": ["A. implementation", "B. rejection", "C. confusion", "D. criticism"],
+            "correct_answer": "A. implementation"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "The _____ of the project was delayed due to unforeseen issues.",
+            "options": ["A. completion", "B. suspension", "C. launch", "D. start"],
+            "correct_answer": "A. completion"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "His constant _____ caused him to lose many friends over the years.",
+            "options": ["A. kindness", "B. arrogance", "C. generosity", "D. humility"],
+            "correct_answer": "B. arrogance"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "The athlete was _____ after winning the gold medal.",
+            "options": ["A. grateful", "B. upset", "C. sad", "D. angry"],
+            "correct_answer": "A. grateful"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "The teacher praised the students for their _____ efforts on the group project.",
+            "options": ["A. minimal", "B. weak", "C. excellent", "D. half-hearted"],
+            "correct_answer": "C. excellent"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "Her _____ speech captivated the audience for hours.",
+            "options": ["A. boring", "B. captivating", "C. dull", "D. incoherent"],
+            "correct_answer": "B. captivating"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "He decided to _____ his vacation plans due to work commitments.",
+            "options": ["A. cancel", "B. follow", "C. continue", "D. postpone"],
+            "correct_answer": "D. postpone"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "The ______ of the situation was clear to everyone involved.",
+            "options": ["A. confusion", "B. simplicity", "C. seriousness", "D. irony"],
+            "correct_answer": "C. seriousness"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "The _____ of the movie left the audience questioning its meaning.",
+            "options": ["A. predictability", "B. ambiguity", "C. clarity", "D. simplicity"],
+            "correct_answer": "B. ambiguity"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "She is known for her _____ personality, making everyone feel welcome.",
+            "options": ["A. cold", "B. warm", "C. shy", "D. awkward"],
+            "correct_answer": "B. warm"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "After the argument, he decided to _____ the matter and move on.",
+            "options": ["A. ignore", "B. analyze", "C. resolve", "D. escalate"],
+            "correct_answer": "C. resolve"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "She managed to _____ the situation by remaining calm and collected.",
+            "options": ["A. complicate", "B. resolve", "C. worsen", "D. avoid"],
+            "correct_answer": "B. resolve"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "The sudden _____ in his health made everyone worried.",
+            "options": ["A. improvement", "B. deterioration", "C. stability", "D. delay"],
+            "correct_answer": "B. deterioration"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "The author's writing style is _____, making her books enjoyable for all ages.",
+            "options": ["A. boring", "B. complex", "C. simple", "D. outdated"],
+            "correct_answer": "C. simple"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "The manager was _____ by the performance of his team during the project.",
+            "options": ["A. pleased", "B. angry", "C. indifferent", "D. disappointed"],
+            "correct_answer": "A. pleased"
+        },
+        {
+            "type": "sentence_completion",
+            "question": "He tried to _____ the truth during the investigation, but the evidence was clear.",
+            "options": ["A. distort", "B. acknowledge", "C. avoid", "D. accept"],
+            "correct_answer": "A. distort"
+        }
+    ]
+}
