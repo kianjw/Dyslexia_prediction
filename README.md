@@ -1,4 +1,7 @@
 # Dyslexia_prediction
+
+This is a project for predicting dyslexia disease with interface using streamlit
+
 Source of Data: https://www.kaggle.com/datasets/thenikhilnj45/dyslexiaproject
 
 The Details_dyslexia.ipynb is our final version that include everything
