@@ -14,5 +14,9 @@ Instruction for how to run the app:
 Putting model.pkl and scaler.pkl and questions_vocab.json in the same directory as app.py
 
 <img width="925" alt="image" src="https://github.com/user-attachments/assets/57ccdb22-03e7-4d41-9645-b6565a023b7d">
-<img width="1350" alt="image" src="https://github.com/user-attachments/assets/b4be46a5-7206-4c6d-837f-cd9daf8ebe93">
+<img width="961" alt="image" src="https://github.com/user-attachments/assets/72b56aaf-d738-4fef-9024-989dabf4c929">
+<img width="1318" alt="image" src="https://github.com/user-attachments/assets/1d403aa4-1df2-4a3d-856f-1df5be8f6820">
+<img width="845" alt="image" src="https://github.com/user-attachments/assets/b4401048-44e7-4161-8893-2796b799d7fe">
+<img width="820" alt="image" src="https://github.com/user-attachments/assets/8ad0e0aa-40eb-403a-ac51-2df4f2a6ae17">
+<img width="1322" alt="image" src="https://github.com/user-attachments/assets/2c6bcd70-a389-4e11-a06f-6e12f707cd59">
 
