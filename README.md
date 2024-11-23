@@ -14,7 +14,11 @@ The file Dyslexia_test_questions set.docx is the test that we created (we collec
 
 Instruction for how to run the app:
 
-Putting model.pkl and scaler.pkl and questions_vocab.json in the same directory as app.py
+For mac-user, you should use app_mac_ver.py
+
+For window-user, you should use app.py
+
+Putting model.pkl and scaler.pkl and questions_vocab.json in the same directory as app.py ( or app_mac_ver.py)
 
 <img width="925" alt="image" src="https://github.com/user-attachments/assets/57ccdb22-03e7-4d41-9645-b6565a023b7d">
 <img width="925" alt="image" src="https://github.com/user-attachments/assets/72b56aaf-d738-4fef-9024-989dabf4c929">
