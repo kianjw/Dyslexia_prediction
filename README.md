@@ -45,7 +45,7 @@ Ensure the following files are in the same directory as the application script:
 ---
 
 ## Contact
-If you have any questions or encounter issues, feel free to open an issue or contact the project maintainer.
+If you have any questions or encounter issues, feel free to open an issue or contact through kian.ttvi@gmail.com
 
 ---
 
