@@ -1,26 +1,33 @@
-# Dyslexia_prediction
+Dyslexia Prediction
+Overview
+This project predicts dyslexia risk levels (High, Moderate, Low) using a machine learning model with an interactive interface built in Streamlit.
 
-This is a project for predicting dyslexia disease with interface using streamlit
+Source of Data
+Data sourced from Kaggle: Dyslexia Dataset
+File Structure
+Main Files
+Details_dyslexia.ipynb: Final version containing all preprocessing, training, and prediction logic.
+data_preprocessing_model_training.ipynb: Focuses on data preprocessing and model training using Random Forest with GridSearchCV.
+inputtest.ipynb: Demonstrates input handling for generating predictions.
+Dyslexia_test_questions_set.docx: Contains a custom test with questions compiled from well-known sources.
+Instructions to Run the App
+File Preparation:
 
-Source of Data: https://www.kaggle.com/datasets/thenikhilnj45/dyslexiaproject
+Ensure the following files are in the same directory as the application scripts:
+model.pkl
+scaler.pkl
+questions_vocab.json
+(Optional) Audios_memory for audio-based questions.
+Execution:
 
-The Details_dyslexia.ipynb is our final version that include everything
+For macOS users:
+Run the app using app_mac_ver.py.
+For Windows users:
+Run the app using app.py.
+Notes
+The Streamlit app does not show the detailed prediction input process (handled separately in inputtest.ipynb).
+Audio-based questions require downloading the Audios_memory file.
 
-The data_preprocessing_model_training.ipynb shows only the Data Preprocessing and Model Training of the Random Forest with GridSearch CV(this one is also included in the details file)
-
-The inputtest.ipynb shows how the inputs work to come out with the prediction(High, Moderate, Low) which will not be shown in the app.py website (this one is also included in the details file)
-
-The file Dyslexia_test_questions set.docx is the test that we created (we collected some formulas and data from several well-known sources)
-
-Instruction for how to run the app:
-
-For mac-user, you should use app_mac_ver.py
-
-For window-user, you should use app.py
-
-Putting model.pkl and scaler.pkl and questions_vocab.json in the same directory as app.py ( or app_mac_ver.py)
-
-For the audio part, you should download the Audios_memory to execute audio question
 
 <img width="925" alt="image" src="https://github.com/user-attachments/assets/57ccdb22-03e7-4d41-9645-b6565a023b7d">
 <img width="925" alt="image" src="https://github.com/user-attachments/assets/72b56aaf-d738-4fef-9024-989dabf4c929">
