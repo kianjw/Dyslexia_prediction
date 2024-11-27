@@ -37,6 +37,9 @@ Ensure the following files are in the same directory as the application script:
   Run the app using the script `app.py`.
 
 ---
+### Interface view
+https://github.com/user-attachments/assets/0ab7fe04-2d23-467a-9f8e-5b16904b3f0c
+
 
 ## Notes
 - The Streamlit app does not include detailed input workflows, which are instead demonstrated in `inputtest.ipynb`.
@@ -56,3 +59,7 @@ If you have any questions or encounter issues, feel free to open an issue or con
 - Code blocks (```markdown``` for GitHub format demonstration)
 
 This structure is clean, visually appealing, and follows GitHub README best practices.
+
+
+
+
