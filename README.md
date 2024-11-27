@@ -38,7 +38,8 @@ Ensure the following files are in the same directory as the application script:
 
 ---
 ### Interface view
-https://github.com/user-attachments/assets/0ab7fe04-2d23-467a-9f8e-5b16904b3f0c
+https://github.com/user-attachments/assets/479e1f63-2a31-4930-aa8c-9d328cc19ab4
+
 
 
 ## Notes
