@@ -50,13 +50,6 @@ https://github.com/user-attachments/assets/0ab7fe04-2d23-467a-9f8e-5b16904b3f0c
 ## Contact
 If you have any questions or encounter issues, feel free to open an issue or contact through kian.ttvi@gmail.com
 
----
-
-### Example Markdown Features Used
-- Headings for a clear hierarchy (`#`, `##`, `###`)
-- Bullet points for lists
-- Inline links for external resources
-- Code blocks (```markdown``` for GitHub format demonstration)
 
 This structure is clean, visually appealing, and follows GitHub README best practices.
 
