@@ -196,78 +196,80 @@ else:
 
 st.markdown("---")  # Add a horizontal line separator
 
-# Memory Test
+# Header
 st.header("🧩 Memory Test")
 st.write("Observe the sequence of numbers. After the sequence disappears, type them in the correct order and press submit to check your answer.")
 
-# Function to evaluate the memory test for each sequence
-def evaluate_memory(user_answer, correct_answer):
-    return user_answer.strip() == correct_answer.strip()
+# Initialize session state variables
+if 'sequences' not in st.session_state:
+    # Generate 5 random sequences of 6 digits
+    st.session_state.sequences = [random.sample(range(10), 6) for _ in range(5)]
+    st.session_state.memory_displayed = [False] * 5
+    st.session_state.memory_submitted = [False] * 5
+    st.session_state.memory_user_answers = [''] * 5
+    st.session_state.memory_scores = [0] * 5
 
-if not st.session_state.time_up:
-    # Initialize session state variables for the Memory Test
-    if 'sequences' not in st.session_state:
-        # Generate 5 random sequences of 6 digits
-        st.session_state.sequences = [random.sample(range(10), 6) for _ in range(5)]
-        st.session_state.memory_displayed = [False] * 5
-        st.session_state.memory_submitted = [False] * 5
-        st.session_state.memory_user_answers = [''] * 5
-        st.session_state.memory_scores = [0] * 5
+# Function to display sequence with a countdown
+def display_sequence(sequence_idx):
+    sequence = st.session_state.sequences[sequence_idx]
+    sequence_str = " ".join(map(str, sequence))
 
-    # Display buttons for each sequence
-    for i in range(5):
-        sequence_label = f"Sequence {i + 1}"
+    # Create a placeholder for dynamic updates
+    placeholder = st.empty()
 
-        # Display the sequence only if it's not displayed yet and not submitted
-        if not st.session_state.memory_displayed[i] and not st.session_state.memory_submitted[i]:
-            # Button to display the sequence
-            if st.button(f"Display {sequence_label}", key=f"display_{i}"):
-                # Show the sequence to the user
-                sequence = st.session_state.sequences[i]
-                sequence_str = " ".join(map(str, sequence))
-
-                # Display the sequence
-                st.markdown(f"<div style='font-size:24px; text-align:center; color:#2980b9;'><strong>{sequence_label}: {sequence_str}</strong></div>", unsafe_allow_html=True)
-                # Wait for 1.5 seconds
-                time.sleep(1.5)
-                # Clear the output
-                st.write(" " * len(sequence_str))  # Overwrite the sequence with empty spaces
-
-                # Mark this sequence as displayed
-                st.session_state.memory_displayed[i] = True
-
-        # Input box for the user to enter their answer for this sequence
-        if st.session_state.memory_displayed[i] and not st.session_state.memory_submitted[i]:
-            user_answer = st.text_input(
-                f"Enter the sequence for {sequence_label}",
-                value=st.session_state.memory_user_answers[i],
-                max_chars=12,
-                key=f"memory_input_{i}"
+    for remaining in range(5, 0, -1):
+        with placeholder.container():
+            st.markdown(
+                f"<div style='text-align:center; color:#e74c3c;'><strong>{sequence_str}</strong></div>", 
+                unsafe_allow_html=True
             )
-            st.session_state.memory_user_answers[i] = user_answer
+            st.markdown(
+                f"<div style='text-align:center; color:#2ecc71;'>Time remaining: {remaining} seconds</div>", 
+                unsafe_allow_html=True
+            )
+        time.sleep(1)
 
-            # Button to submit the answer for this sequence
-            if st.button(f"Submit {sequence_label}", key=f"submit_{i}"):
-                correct_sequence = ''.join(map(str, st.session_state.sequences[i]))
-                if user_answer.strip() != '':
-                    if evaluate_memory(user_answer.replace(" ", ""), correct_sequence):
-                        st.success(f"{sequence_label}: Correct!")
-                        st.session_state.memory_scores[i] = 1
-                    else:
-                        st.error(f"{sequence_label}: Incorrect! The correct sequence was {correct_sequence}")
+    # Clear the placeholder after the countdown
+    placeholder.empty()
+    st.session_state.memory_displayed[sequence_idx] = True
+
+# Display buttons for each sequence
+for i in range(5):
+    sequence_label = f"Sequence {i + 1}"
+
+    # Button to display the sequence
+    if not st.session_state.memory_displayed[i] and not st.session_state.memory_submitted[i]:
+        if st.button(f"Display {sequence_label}", key=f"display_{i}"):
+            display_sequence(i)
+
+    # Input box for the user to enter their answer for this sequence
+    if st.session_state.memory_displayed[i] and not st.session_state.memory_submitted[i]:
+        user_answer = st.text_input(
+            f"Enter the sequence for {sequence_label}",
+            value=st.session_state.memory_user_answers[i],
+            max_chars=12,
+            key=f"memory_input_{i}"
+        )
+        st.session_state.memory_user_answers[i] = user_answer
+
+        if st.button(f"Submit {sequence_label}", key=f"submit_{i}"):
+            correct_sequence = ''.join(map(str, st.session_state.sequences[i]))
+            if user_answer.strip() != '':
+                if user_answer.replace(" ", "") == correct_sequence:
+                    st.success(f"{sequence_label}: Correct!")
+                    st.session_state.memory_scores[i] = 1
                 else:
-                    st.warning(f"{sequence_label}: No answer provided. Score: 0")
-                st.session_state.memory_submitted[i] = True
+                    st.error(f"{sequence_label}: Incorrect! The correct sequence was {correct_sequence}")
+            else:
+                st.warning(f"{sequence_label}: No answer provided. Score: 0")
+            st.session_state.memory_submitted[i] = True
 
-    # Button to calculate and show final memory score
-    if st.button("Submit Final Memory Test Score"):
-        total_score = sum(st.session_state.memory_scores)
-        total_score_percentage = total_score / 5
-        st.success(f"Final Memory Test Score: {total_score_percentage:.2f} (0 = no correct answers, 1 = all correct answers)")
-        st.session_state.Memory = total_score_percentage
-else:
-    st.warning("Time is up! Memory Test is no longer available.")
-
+# Button to calculate and show final memory score
+if st.button("Submit Final Memory Test Score", key="final_score_memory_button_unique"):
+    total_score = sum(st.session_state.memory_scores)
+    total_score_percentage = total_score / 5
+    st.success(f"Final Memory Test Score: {total_score_percentage:.2f} (0 = no correct answers, 1 = all correct answers)")
+    st.session_state.Memory = total_score_percentage
 st.markdown("---")  # Add a horizontal line separator
 
 # Visual Discrimination Test Section
@@ -410,29 +412,31 @@ st.write("Complete the tasks below to assess audio discrimination ability.")
 if not st.session_state.time_up:
     # Phoneme Discrimination
     st.subheader("🔊 Phoneme Discrimination")
-    st.write("Listen to each word pair and indicate whether they sound the same or different.")
+    st.write("Listen to each audio pair and indicate whether they sound the same or different.")
 
+    # Updated file paths and questions
     phoneme_questions = [
-        ("a) 'Bat' and 'Pat'", "bat_pat.wav", "Different"),
-        ("b) 'Ship' and 'Sheep'", "ship_sheep.wav", "Different"),
-        ("c) 'Cat' and 'Cat'", "cat_cat.wav", "Same"),
-        ("d) 'Light' and 'Right'", "light_right.wav", "Different"),
-        ("e) 'Thin' and 'Tin'", "thin_tin.wav", "Different"),
+        ("Audio 1", "Bat_Pat.mp3", "Different"),
+        ("Audio 2", "Ship_Sheep.mp3", "Different"),
+        ("Audio 3", "Cat_Cat.mp3", "Same"),
+        ("Audio 4", "Light_Right.mp3", "Different"),
+        ("Audio 5", "Thin_Tin.mp3", "Different"),
     ]
 
     if 'phoneme_user_answers' not in st.session_state:
         st.session_state.phoneme_user_answers = ['Select an answer'] * len(phoneme_questions)
 
-    for idx, (question_text, audio_file, correct_answer) in enumerate(phoneme_questions):
-        st.markdown(f"<h5>{question_text}</h5>", unsafe_allow_html=True)
+    for idx, (audio_label, audio_file, correct_answer) in enumerate(phoneme_questions):
+        st.markdown(f"<h5>{audio_label}</h5>", unsafe_allow_html=True)
 
         # Play audio button
         audio_col, response_col = st.columns([1, 3])
         with audio_col:
-            if st.button(f"Play Audio {idx + 1}", key=f"phoneme_play_{idx}"):
-                audio_path = os.path.join('audio_files', audio_file)
+            if st.button(f"Play {audio_label}", key=f"phoneme_play_{idx}"):
+                # Update to use the correct audio path
+                audio_path = os.path.join('C:\\Users\\Acer\\Desktop\\Machine Leaning\\Final Project\\Audios_memory', audio_file)
                 if os.path.exists(audio_path):
-                    st.audio(audio_path, format='audio/wav')
+                    st.audio(audio_path, format='audio/mp3')  # Updated to .mp3 format
                 else:
                     st.error(f"Audio file {audio_file} not found.")
 
@@ -440,7 +444,7 @@ if not st.session_state.time_up:
             # User response
             options = ['Select an answer', 'Same', 'Different']
             user_answer = st.radio(
-                f"Do these words sound the same or different? (Question {idx + 1})",
+                f"Do these audio clips sound the same or different? ({audio_label})",
                 options=options,
                 index=options.index(st.session_state.phoneme_user_answers[idx]) if st.session_state.phoneme_user_answers[idx] in options else 0,
                 key=f"phoneme_{idx}"
@@ -449,27 +453,29 @@ if not st.session_state.time_up:
 
     st.markdown("---")  # Add a horizontal line separator
 
-    # Rhyming Words
+
+    # Rhyming Words Section
     st.subheader("📝 Rhyming Words")
     st.write("Listen to the word 'Bake' and select all the words that rhyme with it.")
 
     # Play the audio for 'Bake'
     if st.button("Play Audio for 'Bake'", key="rhyming_play_bake"):
-        bake_audio_path = os.path.join('audio_files', 'bake.wav')
+        bake_audio_path = os.path.join('C:\\Users\\Acer\\Desktop\\Machine Leaning\\Final Project\\Audios_memory', 'Bake.mp3')
         if os.path.exists(bake_audio_path):
-            st.audio(bake_audio_path, format='audio/wav')
+            st.audio(bake_audio_path, format='audio/mp3')  # Updated to .mp3 format
         else:
             st.error("Audio file for 'Bake' not found.")
 
+    # Options for rhyming words
     rhyming_options = ["Take", "Back", "Lake", "Bike"]
     rhyming_correct_answers = ["Take", "Lake"]
 
-    # Optionally, play audio for each option
+    # Add audio play buttons for each option
     for option in rhyming_options:
         if st.button(f"Play Audio for '{option}'", key=f"rhyming_play_{option.lower()}"):
-            option_audio_path = os.path.join('audio_files', f"{option.lower()}.wav")
+            option_audio_path = os.path.join('C:\\Users\\Acer\\Desktop\\Machine Leaning\\Final Project\\Audios_memory', f"{option}.mp3")
             if os.path.exists(option_audio_path):
-                st.audio(option_audio_path, format='audio/wav')
+                st.audio(option_audio_path, format='audio/mp3')  # Updated to .mp3 format
             else:
                 st.error(f"Audio file for '{option}' not found.")
 
@@ -487,51 +493,28 @@ if not st.session_state.time_up:
 
     st.markdown("---")  # Add a horizontal line separator
 
-    # Stress Pattern Identification
-    st.subheader("🔈 Stress Pattern Identification")
-    st.write("Listen to the word 'Photography' and select which syllable is stressed.")
 
-    # Play the audio for 'Photography'
-    if st.button("Play Audio for 'Photography'", key="stress_play_photography"):
-        photography_audio_path = os.path.join('audio_files', 'photography.wav')
-        if os.path.exists(photography_audio_path):
-            st.audio(photography_audio_path, format='audio/wav')
-        else:
-            st.error("Audio file for 'Photography' not found.")
 
-    stress_options = ['Select an answer', "First", "Second", "Third", "Fourth"]
-    stress_correct_answer = "Second"
-
-    if 'stress_user_answer' not in st.session_state:
-        st.session_state.stress_user_answer = 'Select an answer'
-
-    stress_user_answer = st.radio(
-        "Select the stressed syllable in 'Photography':",
-        options=stress_options,
-        index=stress_options.index(st.session_state.stress_user_answer) if st.session_state.stress_user_answer in stress_options else 0,
-        key="stress_pattern"
-    )
-    st.session_state.stress_user_answer = stress_user_answer
-
-    st.markdown("---")  # Add a horizontal line separator
-
-    # Sentence Repetition
+    # Sentence Repetition Section
     st.subheader("🗣️ Sentence Repetition")
     st.write("Listen to the following sentence and write it down.")
 
     # Play the audio for the sentence
     if st.button("Play Sentence Audio", key="sentence_play"):
-        sentence_audio_path = os.path.join('audio_files', 'sentence_repetition.wav')
+        sentence_audio_path = os.path.join('C:\\Users\\Acer\\Desktop\\Machine Leaning\\Final Project\\Audios_memory', 'The_quick_brown.mp3')
         if os.path.exists(sentence_audio_path):
-            st.audio(sentence_audio_path, format='audio/wav')
+            st.audio(sentence_audio_path, format='audio/mp3')  # Updated to .mp3 format
         else:
             st.error("Sentence audio file not found.")
 
+    # Correct sentence answer
     sentence_correct_answer = "The quick brown fox jumps over the lazy dog."
 
+    # Initialize session state for user's answer
     if 'sentence_user_answer' not in st.session_state:
         st.session_state.sentence_user_answer = ''
 
+    # Input field for user's sentence
     sentence_user_answer = st.text_input(
         "Write down the sentence you heard:",
         value=st.session_state.sentence_user_answer,
