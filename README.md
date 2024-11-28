@@ -1,14 +1,59 @@
-# Dyslexia_prediction
-Source of Data: https://www.kaggle.com/datasets/thenikhilnj45/dyslexiaproject
+# Dyslexia Prediction
 
-The Details_dyslexia.ipynb is our final version that include everything
+## Overview
+This project predicts dyslexia risk levels (High, Moderate, Low) using a machine learning model with an interactive interface built in Streamlit.
 
-The Model-choosing-data_preprocessing&model_training.ipynb shows only the Data Preprocessing and Model Training of the Random Forest with GridSearch CV(this one is also included in the details file)
+## Source of Data
+The dataset used in this project is sourced from Kaggle: [Dyslexia Dataset](https://www.kaggle.com/datasets/thenikhilnj45/dyslexiaproject).
 
-The inputtest.ipynb shows how the inputs work to come out with the prediction(High, Moderate, Low) which will not be shown in the app.py website (this one is also included in the details file)
+---
 
-The file Dyslexia_test_questions set.docx is the test that we created (we collected some formulas and data from several well-known sources)
+## File Structure
+### Main Files
+- **Details_dyslexia.ipynb**:  
+  The final notebook version that includes all preprocessing, model training, and prediction logic.
+- **data_preprocessing_model_training.ipynb**:  
+  A separate notebook for data preprocessing and model training using Random Forest with GridSearchCV.
+- **inputtest.ipynb**:  
+  A notebook demonstrating how the inputs work to generate predictions (High, Moderate, Low). This functionality is not exposed in the Streamlit app.
+- **Dyslexia_test_questions_set.docx**:  
+  A document containing a custom test created using data and formulas from several well-known sources.
 
-Instruction for how to run the app:
+---
 
-Putting model.pkl and scaler.pkl and questions_vocab.json in the same directory as app.py
+## Instructions to Run the App
+### File Preparation
+Ensure the following files are in the same directory as the application script:
+- `model.pkl`
+- `scaler.pkl`
+- `questions_vocab.json`
+- (Optional) `Audios_memory` directory for handling audio-based questions.
+
+### Running the App
+- **For macOS users**:  
+  Run the app using the script `app_mac_ver.py`.
+  
+- **For Windows users**:  
+  Run the app using the script `app.py`.
+
+---
+### Interface view
+https://github.com/user-attachments/assets/479e1f63-2a31-4930-aa8c-9d328cc19ab4
+
+
+
+## Notes
+- The Streamlit app does not include detailed input workflows, which are instead demonstrated in `inputtest.ipynb`.
+- Audio-based questions rely on the `Audios_memory` directory for execution.
+
+---
+
+## Contact
+If you have any questions or encounter issues, feel free to open an issue or contact through kian.ttvi@gmail.com
+
+
+This structure is clean, visually appealing, and follows GitHub README best practices.
+
+
+
+
