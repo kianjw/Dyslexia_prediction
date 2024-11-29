@@ -196,11 +196,11 @@ else:
 
 st.markdown("---")  # Add a horizontal line separator
 
-# Header
-st.header("🧩 Memory Test")
+# Header for Part 1
+st.header("🧩 Memory Test Part 1: Number Sequences")
 st.write("Observe the sequence of numbers. After the sequence disappears, type them in the correct order and press submit to check your answer.")
 
-# Initialize session state variables
+# Initialize session state variables for Part 1
 if 'sequences' not in st.session_state:
     # Generate 5 random sequences of 6 digits
     st.session_state.sequences = [random.sample(range(10), 6) for _ in range(5)]
@@ -233,7 +233,7 @@ def display_sequence(sequence_idx):
     placeholder.empty()
     st.session_state.memory_displayed[sequence_idx] = True
 
-# Display buttons for each sequence
+# Display buttons and inputs for Part 1
 for i in range(5):
     sequence_label = f"Sequence {i + 1}"
 
@@ -264,13 +264,98 @@ for i in range(5):
                 st.warning(f"{sequence_label}: No answer provided. Score: 0")
             st.session_state.memory_submitted[i] = True
 
-# Button to calculate and show final memory score
-if st.button("Submit Final Memory Test Score", key="final_score_memory_button_unique"):
+# Button to calculate and show final memory score for Part 1
+if st.button("Submit Final Memory Test Score", key="final_score_memory_button"):
     total_score = sum(st.session_state.memory_scores)
     total_score_percentage = total_score / 5
     st.success(f"Final Memory Test Score: {total_score_percentage:.2f} (0 = no correct answers, 1 = all correct answers)")
-    st.session_state.Memory = total_score_percentage
+
 st.markdown("---")  # Add a horizontal line separator
+
+# Header for Part 2
+st.header("🧩 Memory Test Part 2: Immediate Recall")
+st.write("Listen carefully to the audio. After the audio finishes, type in the words in the correct order and press submit to check your answer.")
+
+# Audio path for the WAV files
+audio_path = r"C:\Users\Acer\Desktop\Machine Leaning\Final Project\Audios_memory"
+
+# Initialize session state variables for Part 2
+if 'audio_files' not in st.session_state:
+    st.session_state.audio_files = [
+        f"{audio_path}/audio_1.wav",  # Example categories
+        f"{audio_path}/audio_2.wav",
+        f"{audio_path}/audio_3.wav",
+        f"{audio_path}/audio_4.wav",
+        f"{audio_path}/audio_5.wav",
+        f"{audio_path}/audio_6.wav",
+        f"{audio_path}/audio_7.wav",
+        f"{audio_path}/audio_8.wav",
+        f"{audio_path}/audio_9.wav",
+        f"{audio_path}/audio_10.wav"
+    ]
+    st.session_state.correct_answers = [
+        ["Apple", "Lettuce", "House", "River", "Dog", "Book", "Cooking"],
+        ["Dog", "Cat", "Rabbit", "Horse", "Sheep", "Cow", "Goat"],
+        ["Table", "Chair", "Sofa", "Bed", "Desk", "Lamp", "Shelf"],
+        ["River", "Lake", "Ocean", "Pond", "Stream", "Beach", "Waterfall"],
+        ["Red", "Blue", "Green", "Yellow", "Pink", "Black", "White"],
+        ["Car", "Bus", "Train", "Plane", "Boat", "Bike", "Truck"],
+        ["Rain", "Snow", "Sun", "Cloud", "Wind", "Storm", "Thunder"],
+        ["Pen", "Pencil", "Eraser", "Paper", "Book", "Notebook", "Ruler"],
+        ["Tree", "Flower", "Grass", "Leaf", "Seed", "Branch", "Bush"],
+        ["Shirt", "Pants", "Socks", "Jacket", "Hat", "Gloves", "Scarf"]
+    ]
+
+if 'selected_audios' not in st.session_state:
+    st.session_state.selected_audios = random.sample(list(enumerate(st.session_state.audio_files)), 5)
+
+if 'audio_play_counts' not in st.session_state:
+    st.session_state.audio_play_counts = [0 for _ in range(len(st.session_state.selected_audios))]
+
+if 'audio_user_answers' not in st.session_state:
+    st.session_state.audio_user_answers = ['' for _ in range(5)]
+
+if 'audio_scores' not in st.session_state:
+    st.session_state.audio_scores = [None for _ in range(5)]
+
+# Function to play audio via Streamlit's native audio function
+def play_audio(audio_file):
+    st.audio(audio_file, format="audio/wav")
+
+# Display each audio and input field for Part 2
+for idx, (audio_idx, audio_path) in enumerate(st.session_state.selected_audios):
+    audio_label = f"Audio {idx + 1}"
+    play_count = st.session_state.audio_play_counts[idx]
+
+    if play_count < 2:
+        if st.button(f"Play {audio_label} ({2 - play_count} plays left)", key=f"play_{idx}"):
+            st.session_state.audio_play_counts[idx] += 1
+            play_audio(audio_path)
+    else:
+        st.write(f"**{audio_label}: Audio can no longer be played.**")
+
+    user_answer_audio = st.text_input(f"Enter your answer for {audio_label}", key=f"audio_input_{idx}", 
+                                      value=st.session_state.audio_user_answers[idx])
+
+    if user_answer_audio:
+        st.session_state.audio_user_answers[idx] = user_answer_audio.strip()
+
+    if st.button(f"Submit {audio_label}", key=f"audio_submit_{idx}") and st.session_state.audio_scores[idx] is None:
+        correct_answer = " ".join(st.session_state.correct_answers[audio_idx])
+        if user_answer_audio.lower() == correct_answer.lower():
+            st.session_state.audio_scores[idx] = 1
+            st.write(f"**{audio_label}: Correct!**")
+        else:
+            st.session_state.audio_scores[idx] = 0
+            st.write(f"**{audio_label}: Incorrect! The correct answer was '{correct_answer}'**")
+
+# Button to calculate final score for Part 2
+if st.button("Submit Final Audio Test Score"):
+    audio_total_score = sum(filter(None, st.session_state.audio_scores))
+    audio_total_percentage = audio_total_score / len(st.session_state.audio_scores)
+    st.success(f"Final Audio Test Score: {audio_total_percentage:.2f} (0 = no correct answers, 1 = all correct answers)")
+    
+st.markdown("---")
 
 # Visual Discrimination Test Section
 st.header("👁️ Visual Discrimination Test")
