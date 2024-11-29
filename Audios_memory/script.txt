@@ -1,0 +1,10 @@
+1. Apple, Lettuce, House, River, Dog, Book, Cooking.
+2 . Dog, Cat, Rabbit, Horse, Sheep, Cow, Goat. (Farm animals)
+3. Table, Chair, Sofa, Bed, Desk, Lamp, Shelf. (Furniture)
+4. River, Lake, Ocean, Pond, Stream, Beach, Waterfall. (Bodies of water)
+5. Red, Blue, Green, Yellow, Pink, Black, White. (Colors)
+6. Car, Bus, Train, Plane, Boat, Bike, Truck. (Modes of transport)
+7. Rain, Snow, Sun, Cloud, Wind, Storm, Thunder. (Weather)
+8. Pen, Pencil, Eraser, Paper, Book, Notebook, Ruler. (Stationery)
+9. Tree, Flower, Grass, Leaf, Seed, Branch, Bush. (Nature)
+10. Shirt, Pants, Socks, Jacket, Hat, Gloves, Scarf.
