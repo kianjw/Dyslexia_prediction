@@ -49,7 +49,7 @@ https://github.com/user-attachments/assets/479e1f63-2a31-4930-aa8c-9d328cc19ab4
 ---
 
 ## Contact
-If you have any questions or encounter issues, feel free to open an issue or contact through kian.ttvi@gmail.com
+If you have any questions or encounter issues, feel free to open an issue or contact through kian.ttvi@gmail.com or karandahal@gmail.com
 
 
 This structure is clean, visually appealing, and follows GitHub README best practices.

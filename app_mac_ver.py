@@ -77,7 +77,7 @@ with open('questions_vocab.json', 'r') as file:
 
 # Set the maximum and minimum time limits in minutes
 max_time = 30  # Total time for the test in minutes
-min_time = 3  # Time at which speed score is at maximum (1)
+min_time = 3   # Time at which speed score is at maximum (1)
 
 # Initialize session state variables
 if 'start_time' not in st.session_state:
@@ -491,29 +491,31 @@ st.write("Complete the tasks below to assess audio discrimination ability.")
 if not st.session_state.time_up:
     # Phoneme Discrimination
     st.subheader("🔊 Phoneme Discrimination")
-    st.write("Listen to each word pair and indicate whether they sound the same or different.")
+    st.write("Listen to each audio pair and indicate whether they sound the same or different.")
 
+    # Updated file paths and questions
     phoneme_questions = [
-        ("a) 'Bat' and 'Pat'", "bat_pat.wav", "Different"),
-        ("b) 'Ship' and 'Sheep'", "ship_sheep.wav", "Different"),
-        ("c) 'Cat' and 'Cat'", "cat_cat.wav", "Same"),
-        ("d) 'Light' and 'Right'", "light_right.wav", "Different"),
-        ("e) 'Thin' and 'Tin'", "thin_tin.wav", "Different"),
+        ("Audio 1", "Bat_Pat.mp3", "Different"),
+        ("Audio 2", "Ship_Sheep.mp3", "Different"),
+        ("Audio 3", "Cat_Cat.mp3", "Same"),
+        ("Audio 4", "Light_Right.mp3", "Different"),
+        ("Audio 5", "Thin_Tin.mp3", "Different"),
     ]
 
     if 'phoneme_user_answers' not in st.session_state:
         st.session_state.phoneme_user_answers = ['Select an answer'] * len(phoneme_questions)
 
-    for idx, (question_text, audio_file, correct_answer) in enumerate(phoneme_questions):
-        st.markdown(f"<h5>{question_text}</h5>", unsafe_allow_html=True)
+    for idx, (audio_label, audio_file, correct_answer) in enumerate(phoneme_questions):
+        st.markdown(f"<h5>{audio_label}</h5>", unsafe_allow_html=True)
 
         # Play audio button
         audio_col, response_col = st.columns([1, 3])
         with audio_col:
-            if st.button(f"Play Audio {idx + 1}", key=f"phoneme_play_{idx}"):
-                audio_path = os.path.join('audio_files', audio_file)
+            if st.button(f"Play {audio_label}", key=f"phoneme_play_{idx}"):
+                # Update to use the correct audio path 
+                audio_path =os.path.join('/Users/apple/Downloads/Audios_memory', audio_file)
                 if os.path.exists(audio_path):
-                    st.audio(audio_path, format='audio/wav')
+                    st.audio(audio_path, format='audio/mp3')  # Updated to .mp3 format
                 else:
                     st.error(f"Audio file {audio_file} not found.")
 
@@ -521,7 +523,7 @@ if not st.session_state.time_up:
             # User response
             options = ['Select an answer', 'Same', 'Different']
             user_answer = st.radio(
-                f"Do these words sound the same or different? (Question {idx + 1})",
+                f"Do these audio clips sound the same or different? ({audio_label})",
                 options=options,
                 index=options.index(st.session_state.phoneme_user_answers[idx]) if st.session_state.phoneme_user_answers[idx] in options else 0,
                 key=f"phoneme_{idx}"
@@ -530,27 +532,29 @@ if not st.session_state.time_up:
 
     st.markdown("---")  # Add a horizontal line separator
 
-    # Rhyming Words
+
+    # Rhyming Words Section
     st.subheader("📝 Rhyming Words")
     st.write("Listen to the word 'Bake' and select all the words that rhyme with it.")
 
     # Play the audio for 'Bake'
     if st.button("Play Audio for 'Bake'", key="rhyming_play_bake"):
-        bake_audio_path = os.path.join('audio_files', 'bake.wav')
+        bake_audio_path = os.path.join('/Users/apple/Downloads/Audios_memory', audio_file)
         if os.path.exists(bake_audio_path):
-            st.audio(bake_audio_path, format='audio/wav')
+            st.audio(bake_audio_path, format='audio/mp3')  # Updated to .mp3 format
         else:
             st.error("Audio file for 'Bake' not found.")
 
+    # Options for rhyming words
     rhyming_options = ["Take", "Back", "Lake", "Bike"]
     rhyming_correct_answers = ["Take", "Lake"]
 
-    # Optionally, play audio for each option
+    # Add audio play buttons for each option
     for option in rhyming_options:
         if st.button(f"Play Audio for '{option}'", key=f"rhyming_play_{option.lower()}"):
-            option_audio_path = os.path.join('audio_files', f"{option.lower()}.wav")
+            option_audio_path = os.path.join('/Users/apple/Downloads/Audios_memory', audio_file)
             if os.path.exists(option_audio_path):
-                st.audio(option_audio_path, format='audio/wav')
+                st.audio(option_audio_path, format='audio/mp3')  # Updated to .mp3 format
             else:
                 st.error(f"Audio file for '{option}' not found.")
 
@@ -568,51 +572,28 @@ if not st.session_state.time_up:
 
     st.markdown("---")  # Add a horizontal line separator
 
-    # Stress Pattern Identification
-    st.subheader("🔈 Stress Pattern Identification")
-    st.write("Listen to the word 'Photography' and select which syllable is stressed.")
 
-    # Play the audio for 'Photography'
-    if st.button("Play Audio for 'Photography'", key="stress_play_photography"):
-        photography_audio_path = os.path.join('audio_files', 'photography.wav')
-        if os.path.exists(photography_audio_path):
-            st.audio(photography_audio_path, format='audio/wav')
-        else:
-            st.error("Audio file for 'Photography' not found.")
 
-    stress_options = ['Select an answer', "First", "Second", "Third", "Fourth"]
-    stress_correct_answer = "Second"
-
-    if 'stress_user_answer' not in st.session_state:
-        st.session_state.stress_user_answer = 'Select an answer'
-
-    stress_user_answer = st.radio(
-        "Select the stressed syllable in 'Photography':",
-        options=stress_options,
-        index=stress_options.index(st.session_state.stress_user_answer) if st.session_state.stress_user_answer in stress_options else 0,
-        key="stress_pattern"
-    )
-    st.session_state.stress_user_answer = stress_user_answer
-
-    st.markdown("---")  # Add a horizontal line separator
-
-    # Sentence Repetition
+    # Sentence Repetition Section
     st.subheader("🗣️ Sentence Repetition")
     st.write("Listen to the following sentence and write it down.")
 
     # Play the audio for the sentence
     if st.button("Play Sentence Audio", key="sentence_play"):
-        sentence_audio_path = os.path.join('audio_files', 'sentence_repetition.wav')
+        sentence_audio_path = os.path.join('/Users/apple/Downloads/Audios_memory', audio_file)
         if os.path.exists(sentence_audio_path):
-            st.audio(sentence_audio_path, format='audio/wav')
+            st.audio(sentence_audio_path, format='audio/mp3')  # Updated to .mp3 format
         else:
             st.error("Sentence audio file not found.")
 
+    # Correct sentence answer
     sentence_correct_answer = "The quick brown fox jumps over the lazy dog."
 
+    # Initialize session state for user's answer
     if 'sentence_user_answer' not in st.session_state:
         st.session_state.sentence_user_answer = ''
 
+    # Input field for user's sentence
     sentence_user_answer = st.text_input(
         "Write down the sentence you heard:",
         value=st.session_state.sentence_user_answer,
@@ -638,6 +619,12 @@ if not st.session_state.time_up:
 
         # Stress Pattern Identification Scoring
         stress_score = 0
+
+        # Initialize session state for 'stress_user_answer' if not already initialized
+        if 'stress_user_answer' not in st.session_state:
+             st.session_state.stress_user_answer = 'Select an answer'
+
+# Then the rest of the code where you use `st.session_state.stress_user_answer`
         if st.session_state.stress_user_answer != 'Select an answer' and st.session_state.stress_user_answer == stress_correct_answer:
             stress_score = 0.1
 
